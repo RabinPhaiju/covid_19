@@ -33,11 +33,9 @@ class _CountryPageState extends State<CountryPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-
             onPressed: (){
             if(countryData!=null){ showSearch(context: context, delegate: Search(countryData)); }
           },
-
           )
         ],
         title: Text(
