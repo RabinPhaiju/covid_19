@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:covid19/pages/about.dart';
+import 'package:covid19/pages/bouncyPageRoute.dart';
+import 'package:covid19/pages/faqs.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:covid19/datasource.dart';
@@ -143,24 +145,28 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
         style: SnakeBarStyle.pinned,
-        backgroundGradient: const LinearGradient(colors: [Colors.black45, Colors.black54]),
+        backgroundGradient: const LinearGradient(colors: [Colors.grey, Colors.grey]),
         currentIndex: _pos,
         padding: EdgeInsets.all(2),
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.grey,
         onPositionChanged: (index){
           setState(() {
 //            _pos = index;
           });
-          if(index==4){
+          if(index==3){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> About()));
+          }else if(index==2){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> CountryPage()));
+          }else if(index==1){
+//            Navigator.push(context, MaterialPageRoute(builder: (context)=> FAQPage()));
+              Navigator.push(context, BouncyPageRoute(widget:FAQPage()));
           }
         },
 
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home),title: Text('home')),
-          BottomNavigationBarItem(icon: Icon(Icons.headset,),title: Text('home')),
-          BottomNavigationBarItem(icon: Icon(Icons.add),title: Text('home')),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today),title: Text('home')),
+          BottomNavigationBarItem(icon: Icon(Icons.question_answer),title: Text('FAQs')),
+          BottomNavigationBarItem(icon: Icon(Icons.assistant_photo),title: Text('Regional')),
           BottomNavigationBarItem(icon: Icon(Icons.straighten),title: Text('About')),
         ],
       ),

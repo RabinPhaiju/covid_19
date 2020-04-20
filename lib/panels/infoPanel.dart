@@ -10,26 +10,26 @@ class InfoPanel extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => FAQPage()));
-            },
-            child: Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                margin: EdgeInsets.all(5),
-                color: primaryBlack,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("FAQS", style: TextStyle(color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),),
-                    Icon(Icons.arrow_forward, color: Colors.white,)
-                  ],
-                )
-            ),
-          ),
+//          GestureDetector(
+//            onTap: () {
+//              Navigator.push(
+//                  context, MaterialPageRoute(builder: (context) => FAQPage()));
+//            },
+//            child: Container(
+//                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+//                margin: EdgeInsets.all(5),
+//                color: primaryBlack,
+//                child: Row(
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  children: <Widget>[
+//                    Text("FAQS", style: TextStyle(color: Colors.white,
+//                        fontWeight: FontWeight.bold,
+//                        fontSize: 20),),
+//                    Icon(Icons.arrow_forward, color: Colors.white,)
+//                  ],
+//                )
+//            ),
+//          ),
           GestureDetector(
             onTap: () {
               launch('https://covid19responsefund.org/');
@@ -69,26 +69,26 @@ class InfoPanel extends StatelessWidget {
                 )
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => About()));
-            },
-            child: Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                margin: EdgeInsets.all(5),
-                color: primaryBlack,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("About", style: TextStyle(color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),),
-                    Icon(Icons.arrow_forward, color: Colors.white,)
-                  ],
-                )
-            ),
-          ),
+//          GestureDetector(
+//            onTap: () {
+//              Navigator.push(
+//                  context, MaterialPageRoute(builder: (context) => About()));
+//            },
+//            child: Container(
+//                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+//                margin: EdgeInsets.all(5),
+//                color: primaryBlack,
+//                child: Row(
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  children: <Widget>[
+//                    Text("About", style: TextStyle(color: Colors.white,
+//                        fontWeight: FontWeight.bold,
+//                        fontSize: 20),),
+//                    Icon(Icons.arrow_forward, color: Colors.white,)
+//                  ],
+//                )
+//            ),
+//          ),
         ],
       ),
     );
