@@ -25,7 +25,8 @@ class About extends StatelessWidget {
                 child:  Text('Github',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue,fontSize: 15),),
             ),
             SizedBox(height: 10,),
-            Text('This aplication is based on Corona Virus (Covid-19). Source of data "https://corona.lmao.ninja/".',
+            Text('This aplication provides information about Corona Virus (Covid-19).'
+                ' Source of data "https://corona.lmao.ninja".',
               style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
             SizedBox(height: 10,),
             GestureDetector(

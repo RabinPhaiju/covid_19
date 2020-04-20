@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covid19/datasource.dart';
+import 'package:covid19/pages/countryInfo.dart';
 import 'package:covid19/pages/countryPage.dart';
 import 'package:covid19/panels/infoPanel.dart';
 import 'package:covid19/panels/mosteffectedcountries.dart';
@@ -9,7 +10,6 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pie_chart/pie_chart.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,6 +27,16 @@ class _HomePageState extends State<HomePage> {
   });
 }
 
+  Map nepalData;
+  fetchNepalData()async{
+    http.Response response = await http.get('https://corona.lmao.ninja/v2/countries/nepal?yesterday=false&strict=false');
+
+
+    setState(() {
+      nepalData = json.decode(response.body);
+    });
+  }
+
   List countryData;
   fetchCountryData()async{
     http.Response response = await http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases');
@@ -37,6 +47,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future fetchData()async{
+    fetchNepalData();
     fetchCountryData();
     fetchWorldWideData();
 
@@ -60,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             DynamicTheme.of(context).setBrightness(Theme.of(context).brightness==Brightness.light?Brightness.dark:Brightness.light);
           },)
         ],
-        title: Text("COVID-19"),
+        title: Text("COVID-19 ( #Stay Home )"),
       ),
       body: RefreshIndicator(
         onRefresh: fetchData,
@@ -71,11 +82,20 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: 80,
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(15),
-                color: Colors.orange[100],
-                child: Text(DataSource.quote, style: TextStyle(color: Colors.orange[800],fontWeight: FontWeight.bold),),
-
+                padding: EdgeInsets.only(left:10,top: 5),
+                color: Colors.grey[100],
+//                child: Text(DataSource.quote, style: TextStyle(color: Colors.orange[800],fontWeight: FontWeight.bold),),
+                  child:
+              nepalData==null?Container(child:Row(
+                children: <Widget>[
+                  SizedBox(width: 10,),
+                  CircularProgressIndicator(),
+                  SizedBox(width: 10,),
+                  Text('Loading data',style: TextStyle(fontSize: 15,color: Colors.grey),)
+                ],
+              ) ):Country(nepalData:nepalData),
               ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                 child: Row(
@@ -97,14 +117,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               worldData==null?Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 10,),
-                    CircularProgressIndicator(),
-                    SizedBox(width: 10,),
-                    Text('Loading',style: TextStyle(fontSize: 15),)
-                  ],
-                ),
+
               ):WorldwidePanel(worldData: worldData,),
 
               SizedBox(height: 10,),
@@ -125,4 +138,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }
