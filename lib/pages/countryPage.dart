@@ -1,3 +1,5 @@
+import 'package:covid19/pages/search.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,6 +30,16 @@ class _CountryPageState extends State<CountryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+
+            onPressed: (){
+            if(countryData!=null){ showSearch(context: context, delegate: Search(countryData)); }
+          },
+
+          )
+        ],
         title: Text(
           'Country Stats',
         ),
@@ -37,17 +49,16 @@ class _CountryPageState extends State<CountryPage> {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             height: 130,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow:[ BoxShadow(
-                color: Colors.grey[100], blurRadius: 10, offset: Offset(0,10)),
-              ]),
+            color: Colors.black12,
             child: Row(
               children: <Widget>[
                 Container(
+                  width: 200,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(countryData[index]['country'],style: TextStyle(fontWeight: FontWeight.bold),),
                       Image.network(countryData[index]['countryInfo']['flag'],height: 50,width: 60,),

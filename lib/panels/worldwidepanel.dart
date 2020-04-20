@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class WorldwidePanel extends StatelessWidget {
 final Map worldData;
@@ -10,37 +11,57 @@ final Map worldData;
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: GridView(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 2),
+      child: Column(
         children: <Widget>[
-          StatusPanel(
-            title: 'CONFIRMED',
-            panelColor: Colors.red[100],
-            textColor: Colors.red,
-            count: worldData['cases'].toString(),
+          GridView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 2),
+            children: <Widget>[
+              StatusPanel(
+                title: 'CONFIRMED',
+                panelColor: Colors.red[100],
+                textColor: Colors.red,
+                count: worldData['cases'].toString(),
+              ),
+              StatusPanel(
+                title: 'ACTIVE',
+                panelColor: Colors.blue[100],
+                textColor: Colors.blue,
+                count: worldData['active'].toString(),
+              ),
+              StatusPanel(
+                title: 'RECOVERED',
+                panelColor: Colors.green[100],
+                textColor: Colors.green,
+                count: worldData['recovered'].toString(),
+              ),
+              StatusPanel(
+                title: 'DEATHS',
+                panelColor: Colors.blueGrey[100],
+                textColor: Colors.blueGrey,
+                count: worldData['deaths'].toString(),
+              ),
+
+            ],
           ),
-          StatusPanel(
-            title: 'ACTIVE',
-            panelColor: Colors.blue[100],
-            textColor: Colors.blue,
-            count: worldData['active'].toString(),
+          Container(
+            height: 200,
+            child: PieChart(dataMap: {
+              'Confirmed':worldData['cases'].toDouble(),
+              'Active':worldData['active'].toDouble(),
+              'Recovered':worldData['recovered'].toDouble(),
+              'Deaths':worldData['deaths'].toDouble(),
+            },
+              colorList: [
+                Colors.red,
+                Colors.blue,
+                Colors.green,
+                Colors.grey[900],
+              ],),
           ),
-          StatusPanel(
-            title: 'RECOVERED',
-            panelColor: Colors.green[100],
-            textColor: Colors.green,
-            count: worldData['recovered'].toString(),
-          ),
-          StatusPanel(
-            title: 'DEATHS',
-            panelColor: Colors.blueGrey[100],
-            textColor: Colors.blueGrey,
-            count: worldData['deaths'].toString(),
-          ),
-          
         ],
+
       ),
     );
   }
@@ -60,7 +81,7 @@ class StatusPanel extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.all(8),
-      height: 80,width: width/2,
+      height: 50,width: width/2,
       color: panelColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

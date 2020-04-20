@@ -37,8 +37,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future fetchData()async{
-    fetchWorldWideData();
     fetchCountryData();
+    fetchWorldWideData();
+
 //    print('Refresh');
   }
 
@@ -95,19 +96,17 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              worldData==null?CircularProgressIndicator():WorldwidePanel(worldData: worldData,),
-              PieChart(dataMap: {
-                'Confirmed':worldData['cases'].toDouble(),
-                'Active':worldData['active'].toDouble(),
-                'Recovered':worldData['recovered'].toDouble(),
-                'Deaths':worldData['deaths'].toDouble(),
-              },
-              colorList: [
-                Colors.red,
-                Colors.blue,
-                Colors.green,
-                Colors.grey[900],
-              ],),
+              worldData==null?Container(
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(width: 10,),
+                    CircularProgressIndicator(),
+                    SizedBox(width: 10,),
+                    Text('Loading',style: TextStyle(fontSize: 15),)
+                  ],
+                ),
+              ):WorldwidePanel(worldData: worldData,),
+
               SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
