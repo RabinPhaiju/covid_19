@@ -1,5 +1,7 @@
 import 'dart:convert';
-
+import 'package:covid19/pages/about.dart';
+import 'package:flutter/animation.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:covid19/datasource.dart';
 import 'package:covid19/pages/countryInfo.dart';
 import 'package:covid19/pages/countryPage.dart';
@@ -17,7 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  int _pos = 0;
   Map worldData;
   fetchWorldWideData()async{
   http.Response response = await http.get('https://corona.lmao.ninja/v2/all');
@@ -50,7 +52,6 @@ class _HomePageState extends State<HomePage> {
     fetchNepalData();
     fetchCountryData();
     fetchWorldWideData();
-
 //    print('Refresh');
   }
 
@@ -60,10 +61,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
 
               SizedBox(height: 10,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 6.0),
                 child: Text('Most Affected Country',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
               ),
               SizedBox(height: 10,),
@@ -135,6 +135,34 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: SnakeNavigationBar(
+
+        showUnselectedLabels: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
+        style: SnakeBarStyle.pinned,
+        backgroundGradient: const LinearGradient(colors: [Colors.black45, Colors.black54]),
+        currentIndex: _pos,
+        padding: EdgeInsets.all(2),
+        selectedItemColor: Colors.white,
+        onPositionChanged: (index){
+          setState(() {
+//            _pos = index;
+          });
+          if(index==4){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> About()));
+          }
+        },
+
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home),title: Text('home')),
+          BottomNavigationBarItem(icon: Icon(Icons.headset,),title: Text('home')),
+          BottomNavigationBarItem(icon: Icon(Icons.add),title: Text('home')),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today),title: Text('home')),
+          BottomNavigationBarItem(icon: Icon(Icons.straighten),title: Text('About')),
+        ],
       ),
     );
   }

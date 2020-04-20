@@ -46,7 +46,7 @@ final Map worldData;
             ],
           ),
           Container(
-            height: 200,
+            height: 150,
             child: PieChart(dataMap: {
               'Confirmed':worldData['cases'].toDouble(),
               'Active':worldData['active'].toDouble(),
