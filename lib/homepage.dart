@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:covid19/pages/about.dart';
 import 'package:covid19/pages/bouncyPageRoute.dart';
 import 'package:covid19/pages/faqs.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:covid19/datasource.dart';
 import 'package:covid19/pages/countryInfo.dart';
@@ -23,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _pos = 0;
   Map worldData;
+
   fetchWorldWideData()async{
   http.Response response = await http.get('https://corona.lmao.ninja/v2/all');
 
@@ -82,36 +82,41 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                height: 80,
+                height: 70,
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left:10,top: 5),
-                color: Colors.grey[100],
+                color: Theme.of(context).brightness == Brightness.light?Colors.grey[200]:primaryBlack,
 //                child: Text(DataSource.quote, style: TextStyle(color: Colors.orange[800],fontWeight: FontWeight.bold),),
                   child:
               nepalData==null?Container(child:Row(
                 children: <Widget>[
                   SizedBox(width: 10,),
                   CircularProgressIndicator(),
-                  SizedBox(width: 10,),
+                  SizedBox(width: 5,),
                   Text('Loading data',style: TextStyle(fontSize: 15,color: Colors.grey),)
+
+
+
+
+
                 ],
               ) ):Country(nepalData:nepalData),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('Worldwide',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                     GestureDetector(
-                      onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryPage()));
+                      onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryPage(countryData: countryData)));
                       },
                       child: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: primaryBlack,
+                            color:Colors.grey[800],
                           ),
                           child: Text('Regional',style: TextStyle(fontSize: 16,color: Colors.white, fontWeight: FontWeight.bold),)),
                     ),
@@ -124,7 +129,7 @@ class _HomePageState extends State<HomePage> {
 
               SizedBox(height: 10,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text('Most Affected Country',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
               ),
               SizedBox(height: 10,),
@@ -133,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               InfoPanel(),
               SizedBox(height: 20,),
               Center(child: Text("WE ARE TOGETHER IN THE FIGHT",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-              SizedBox(height: 50,),
+              SizedBox(height: 40,),
             ],
           ),
         ),
@@ -145,10 +150,10 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
         style: SnakeBarStyle.pinned,
-        backgroundGradient: const LinearGradient(colors: [Colors.grey, Colors.grey]),
+        backgroundColor: Theme.of(context).brightness == Brightness.light?Colors.grey:Colors.grey[700],
         currentIndex: _pos,
         padding: EdgeInsets.all(2),
-        selectedItemColor: Colors.grey,
+        selectedItemColor: Colors.grey[100],
         onPositionChanged: (index){
           setState(() {
 //            _pos = index;
@@ -156,13 +161,12 @@ class _HomePageState extends State<HomePage> {
           if(index==3){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> About()));
           }else if(index==2){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> CountryPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> CountryPage(countryData: countryData)));
           }else if(index==1){
 //            Navigator.push(context, MaterialPageRoute(builder: (context)=> FAQPage()));
               Navigator.push(context, BouncyPageRoute(widget:FAQPage()));
           }
         },
-
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home),title: Text('home')),
           BottomNavigationBarItem(icon: Icon(Icons.question_answer),title: Text('FAQs')),

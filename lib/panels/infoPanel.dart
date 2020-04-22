@@ -1,6 +1,4 @@
 import 'package:covid19/datasource.dart';
-import 'package:covid19/pages/about.dart';
-import 'package:covid19/pages/faqs.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
