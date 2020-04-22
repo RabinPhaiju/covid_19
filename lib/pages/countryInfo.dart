@@ -1,5 +1,6 @@
 import 'package:covid19/pages/countryPageInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class Country extends StatelessWidget {
   final Map nepalData;
@@ -10,17 +11,20 @@ class Country extends StatelessWidget {
     return GestureDetector(
       onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryPageInfo(info: nepalData,)));},
       child: Container(
+      child:SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
         child: Row(
           children: <Widget>[
-            Column(
-              children: <Widget>[
+              Column(
+                children: <Widget>[
 //                      Text(nepalData['country']),
 //                      Image.network(nepalData['flag']),
-                Text('Nepal',style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black:Colors.grey[100]),),
-                Image.network(nepalData['countryInfo']['flag'],width: 25,),
+                  Text(nepalData['country'],style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black:Colors.grey[100]),),
+                  Image.network(nepalData['countryInfo']['flag'],width: 25,),
 
-              ],
-            ),
+                ],
+              ),
+
             SizedBox(width: 20,),
             Column(
               children: <Widget>[
@@ -45,12 +49,34 @@ class Country extends StatelessWidget {
             SizedBox(width: 15,),
             Column(
               children: <Widget>[
-                Text('Deaths',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black54:Colors.grey[100]),),
-                Text(nepalData['deaths'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black54:Colors.grey[100]),),
+                Text('Deaths',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.grey[800]:Colors.grey[400]),),
+                Text(nepalData['deaths'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.grey[800]:Colors.grey[500]),),
+              ],
+            ),
+            SizedBox(width: 15,),
+            Column(
+              children: <Widget>[
+                Text('Critical',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.orange[600]:Colors.orange[600]),),
+                Text(nepalData['critical'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.orange[400]:Colors.orange[600]),),
+              ],
+            ),
+            SizedBox(width: 15,),
+            Column(
+              children: <Widget>[
+                Text('Today Cases',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.red[500]:Colors.red[600]),),
+                Text(nepalData['todayCases'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.red[600]:Colors.red[600]),),
+              ],
+            ),
+            SizedBox(width: 15,),
+            Column(
+              children: <Widget>[
+                Text('Today Deaths',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.grey[800]:Colors.grey[400]),),
+                Text(nepalData['todayDeaths'].toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black54:Colors.grey[400]),),
               ],
             ),
           ],
         ),
+      ),
       ),
     );
   }
