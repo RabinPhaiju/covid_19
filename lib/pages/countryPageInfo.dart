@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CountryPageInfo extends StatelessWidget {
@@ -14,7 +15,7 @@ class CountryPageInfo extends StatelessWidget {
       ),
       body: Container(
               alignment: Alignment.center,
-              height: MediaQuery.of(context).size.height*0.6,
+              height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
               margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
@@ -26,27 +27,18 @@ class CountryPageInfo extends StatelessWidget {
 
                 child: Column(
                   children: <Widget>[
-                    Image.network(info['countryInfo']['flag'],height: 200,width: 200,),
-                    Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(height: 10,),
-                          Text('Cases : '+ info['cases'].toString(),style: TextStyle(color: Colors.red[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Today Cases : '+ info['todayCases'].toString(),style: TextStyle(color: Colors.red[300] ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Deaths : '+ info['deaths'].toString(),style: TextStyle(color: Colors.grey[500] ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Today Deaths : '+ info['todayDeaths'].toString(),style: TextStyle(color: Colors.grey[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Recovered : '+ info['recovered'].toString(),style: TextStyle(color: Colors.green[600] ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Active : '+ info['active'].toString(),style: TextStyle(color: Colors.blueAccent ,fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(height: 10,),
-                          Text('Critical : '+ info['critical'].toString(),style: TextStyle(color: Colors.orange ,fontWeight: FontWeight.bold,fontSize: 20),),
-                        ],
-                      ),
+                    MediaQuery.of(context).orientation==Orientation.landscape?Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.network(info['countryInfo']['flag'],height: 200,width: 200,),
+                        SizedBox(width: 40,),
+                        countryList(),
+                      ],
+                    ):Column(
+                      children: <Widget>[
+                        Image.network(info['countryInfo']['flag'],height: 200,width: 200,),
+                        countryList(),
+                      ],
                     ),
 
                   ],
@@ -57,6 +49,29 @@ class CountryPageInfo extends StatelessWidget {
 
 
 
+    );
+  }
+
+
+  countryList() {
+     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(height: 5,),
+        Text('Cases : '+ info['cases'].toString(),style: TextStyle(color: Colors.red[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Today Cases : '+ info['todayCases'].toString(),style: TextStyle(color: Colors.red[300] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Deaths : '+ info['deaths'].toString(),style: TextStyle(color: Colors.grey[500] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Today Deaths : '+ info['todayDeaths'].toString(),style: TextStyle(color: Colors.grey[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Recovered : '+ info['recovered'].toString(),style: TextStyle(color: Colors.green[600] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Active : '+ info['active'].toString(),style: TextStyle(color: Colors.blueAccent ,fontWeight: FontWeight.bold,fontSize: 20),),
+        SizedBox(height: 10,),
+        Text('Critical : '+ info['critical'].toString(),style: TextStyle(color: Colors.orange ,fontWeight: FontWeight.bold,fontSize: 20),),
+      ],
     );
   }
 }

@@ -70,7 +70,6 @@ const WorldwidePanel({Key key, this.worldData}) : super(key: key);
               ],),
           ),
         ],
-
       ),
     );
   }
@@ -90,7 +89,8 @@ class StatusPanel extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.all(8),
-      height: 50,width: width/2,
+      height: 50,
+      width: width/2,
       color: panelColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
