@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:nepali_utils/nepali_utils.dart';
+var commaSeparated = NepaliNumberFormat(
+  decimalDigits: 0,
+);
 
 class WorldwidePanel extends StatelessWidget {
 final Map worldData;
@@ -20,37 +24,38 @@ const WorldwidePanel({Key key, this.worldData}) : super(key: key);
                 title: 'CONFIRMED',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.red[100]:Colors.red[200],
                 textColor: Colors.red,
-                count: worldData['cases'].toString(),
+                count: commaSeparated.format(worldData['cases'].toString()),
               ),
+
               StatusPanel(
                 title: 'ACTIVE',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.blue[100]:Colors.blue[200],
                 textColor: Colors.blue[800],
-                count: worldData['active'].toString(),
+                count: commaSeparated.format(worldData['active'].toString()),
               ),
               StatusPanel(
                 title: 'Today Cases',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.orange[100]:Colors.orange[200],
                 textColor: Colors.orange[800],
-                count: worldData['todayCases'].toString(),
+                count: commaSeparated.format(worldData['todayCases'].toString()),
               ),
               StatusPanel(
                 title: 'RECOVERED',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.green[100]:Colors.green[200],
                 textColor: Colors.green[800],
-                count: worldData['recovered'].toString(),
+                count: commaSeparated.format(worldData['recovered'].toString()),
               ),
               StatusPanel(
                 title: 'DEATHS',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.blueGrey[100]:Colors.blueGrey[200],
                 textColor: Colors.blueGrey[800],
-                count: worldData['deaths'].toString(),
+                count: commaSeparated.format(worldData['deaths'].toString()),
               ),
               StatusPanel(
                 title: 'Today Deaths',
                 panelColor: Theme.of(context).brightness == Brightness.light?Colors.brown[100]:Colors.brown[200],
                 textColor: Colors.brown[800],
-                count: worldData['todayDeaths'].toString(),
+                count: commaSeparated.format(worldData['todayDeaths'].toString()),
               ),
             ],
           ),

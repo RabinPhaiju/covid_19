@@ -1,5 +1,9 @@
 import 'package:covid19/pages/countryPageInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:nepali_utils/nepali_utils.dart';
+var commaSeparated = NepaliNumberFormat(
+  decimalDigits: 0,
+);
 
 class MostAffectedPanel extends StatelessWidget {
   final List countryData;
@@ -26,8 +30,8 @@ class MostAffectedPanel extends StatelessWidget {
                   SizedBox(width: 10,),
                   Text(countryData[index]['country']),
                   SizedBox(width: 10,),
-                  Text('Cases: '+ countryData[index]['cases'].toString(),style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
-                  Text(' | Deaths: '+ countryData[index]['deaths'].toString(),style: TextStyle(color: Colors.redAccent,fontWeight: FontWeight.bold),)
+                  Text('Cases: '+ commaSeparated.format(countryData[index]['cases'].toString()),style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+                  Text(' | Deaths: '+ commaSeparated.format(countryData[index]['deaths'].toString()),style: TextStyle(color: Colors.redAccent,fontWeight: FontWeight.bold),)
                 ],
               ),
 

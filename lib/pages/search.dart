@@ -2,6 +2,10 @@ import 'package:covid19/datasource.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'countryPageInfo.dart';
+import 'package:nepali_utils/nepali_utils.dart';
+var commaSeparated = NepaliNumberFormat(
+  decimalDigits: 0,
+);
 
 class Search extends SearchDelegate{
   final List countryList;
@@ -71,10 +75,10 @@ class Search extends SearchDelegate{
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('CONFIRMED: '+ suggestionList[index]['cases'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
-                        Text('ACTIVE: '+ suggestionList[index]['active'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
-                        Text('RECOVERD: '+ suggestionList[index]['recovered'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
-                        Text('DEATHS: '+ suggestionList[index]['deaths'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
+                        Text('CONFIRMED: '+ commaSeparated.format(suggestionList[index]['cases'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
+                        Text('ACTIVE: '+ commaSeparated.format(suggestionList[index]['active'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                        Text('RECOVERD: '+ commaSeparated.format(suggestionList[index]['recovered'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
+                        Text('DEATHS: '+ commaSeparated.format(suggestionList[index]['deaths'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
 
                       ],
                     ),
@@ -124,10 +128,10 @@ class Search extends SearchDelegate{
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('CONFIRMED: '+ suggestionList[index]['cases'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
-                    Text('ACTIVE: '+ suggestionList[index]['active'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
-                    Text('RECOVERD: '+ suggestionList[index]['recovered'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
-                    Text('DEATHS: '+ suggestionList[index]['deaths'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
+                    Text('CONFIRMED: '+ commaSeparated.format(suggestionList[index]['cases'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
+                    Text('ACTIVE: '+ commaSeparated.format(suggestionList[index]['active'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                    Text('RECOVERD: '+ commaSeparated.format(suggestionList[index]['recovered'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
+                    Text('DEATHS: '+ commaSeparated.format(suggestionList[index]['deaths'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
 
                   ],
                 ),

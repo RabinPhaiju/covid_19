@@ -2,6 +2,10 @@ import 'package:covid19/pages/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'countryPageInfo.dart';
+import 'package:nepali_utils/nepali_utils.dart';
+var commaSeparated = NepaliNumberFormat(
+  decimalDigits: 0,
+);
 
 class CountryPage extends StatelessWidget {
   final List countryData;
@@ -54,10 +58,10 @@ class CountryPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('CONFIRMED: '+ countryData[index]['cases'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
-                        Text('ACTIVE: '+ countryData[index]['active'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
-                        Text('RECOVERD: '+ countryData[index]['recovered'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
-                        Text('DEATHS: '+ countryData[index]['deaths'].toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
+                        Text('CONFIRMED: '+ commaSeparated.format(countryData[index]['cases'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
+                        Text('ACTIVE: '+ commaSeparated.format(countryData[index]['active'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                        Text('RECOVERD: '+ commaSeparated.format(countryData[index]['recovered'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green),),
+                        Text('DEATHS: '+ commaSeparated.format(countryData[index]['deaths'].toString()),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
 
                       ],
                     ),

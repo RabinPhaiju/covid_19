@@ -1,7 +1,8 @@
 import 'package:covid19/datasource.dart';
+import 'package:covid19/homepage.dart';
+import 'package:covid19/splashscreen.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'homepage.dart';
 
 void main(){
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: theme,
-          home: HomePage(),
+          home: SplashScreen(),
         );
       },
 

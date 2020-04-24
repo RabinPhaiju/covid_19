@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nepali_utils/nepali_utils.dart';
+var commaSeparated = NepaliNumberFormat(
+  decimalDigits: 0,
+);
 
 class CountryPageInfo extends StatelessWidget {
 
@@ -58,19 +62,19 @@ class CountryPageInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 5,),
-        Text('Cases : '+ info['cases'].toString(),style: TextStyle(color: Colors.red[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Cases : '+ commaSeparated.format(info['cases'].toString()),style: TextStyle(color: Colors.red[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Today Cases : '+ info['todayCases'].toString(),style: TextStyle(color: Colors.red[300] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Today Cases : '+ commaSeparated.format(info['todayCases'].toString()),style: TextStyle(color: Colors.red[300] ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Deaths : '+ info['deaths'].toString(),style: TextStyle(color: Colors.grey[500] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Deaths : '+ commaSeparated.format(info['deaths'].toString()),style: TextStyle(color: Colors.grey[500] ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Today Deaths : '+ info['todayDeaths'].toString(),style: TextStyle(color: Colors.grey[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Today Deaths : '+ commaSeparated.format(info['todayDeaths'].toString()),style: TextStyle(color: Colors.grey[400] ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Recovered : '+ info['recovered'].toString(),style: TextStyle(color: Colors.green[600] ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Recovered : '+ commaSeparated.format(info['recovered'].toString()),style: TextStyle(color: Colors.green[600] ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Active : '+ info['active'].toString(),style: TextStyle(color: Colors.blueAccent ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Active : '+ commaSeparated.format(info['active'].toString()),style: TextStyle(color: Colors.blueAccent ,fontWeight: FontWeight.bold,fontSize: 20),),
         SizedBox(height: 10,),
-        Text('Critical : '+ info['critical'].toString(),style: TextStyle(color: Colors.orange ,fontWeight: FontWeight.bold,fontSize: 20),),
+        Text('Critical : '+ commaSeparated.format(info['critical'].toString()),style: TextStyle(color: Colors.orange ,fontWeight: FontWeight.bold,fontSize: 20),),
       ],
     );
   }
