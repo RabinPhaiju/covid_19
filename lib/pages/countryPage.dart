@@ -1,6 +1,7 @@
 import 'package:covid19/pages/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'countryPageInfo.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 var commaSeparated = NepaliNumberFormat(
@@ -13,6 +14,9 @@ class CountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,DeviceOrientation.portraitUp
+    ]);
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[

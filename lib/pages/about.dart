@@ -1,10 +1,14 @@
 import 'package:covid19/datasource.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,DeviceOrientation.portraitUp
+    ]);
     return Scaffold(
       appBar: AppBar(title: Text("About"),),
       backgroundColor: primaryBlack,

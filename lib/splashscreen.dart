@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'datasource.dart';
 import 'homepage.dart';
@@ -31,6 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
         );
       },
       themedWidgetBuilder: (context,theme){
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitDown,DeviceOrientation.portraitUp
+        ]);
         return Scaffold(
           backgroundColor: primaryBlack,
           body: Center(
