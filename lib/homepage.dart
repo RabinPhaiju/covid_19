@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(width: 10,),
                     CircularProgressIndicator(),
                     SizedBox(width: 5,),
-                    Text('Loading data',style: TextStyle(fontSize: 15,color: Colors.grey),)
+                    Text('Loading...',style: TextStyle(fontSize: 15,color: Colors.grey),)
 
 
 

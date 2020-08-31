@@ -1,5 +1,4 @@
 import 'package:covid19/datasource.dart';
-import 'package:covid19/homepage.dart';
 import 'package:covid19/splashscreen.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
