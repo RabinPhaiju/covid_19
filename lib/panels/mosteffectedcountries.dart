@@ -12,11 +12,12 @@ class MostAffectedPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-        height: 200,
+        height: 250,
         color: Colors.black12,
         child: ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          // shrinkWrap: true,
+          // physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context,index){
           return GestureDetector(
             onTap: (){
@@ -38,7 +39,7 @@ class MostAffectedPanel extends StatelessWidget {
             ),
           );
         },
-        itemCount: 20,),
+        itemCount: 40,),
       );
 
   }

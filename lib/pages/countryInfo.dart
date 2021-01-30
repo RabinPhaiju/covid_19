@@ -78,6 +78,7 @@ class Country extends StatelessWidget {
                 Text(commaSeparated.format(nepalData['todayDeaths'].toString()),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.light?Colors.black54:Colors.grey[400]),),
               ],
             ),
+            SizedBox(width: 15,)
           ],
         ),
       ),
